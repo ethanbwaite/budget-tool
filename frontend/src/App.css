@@ -1,0 +1,15 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Box-income {
+  background-color: grey;
+  width: 50%;
+  height: 85%;
+}

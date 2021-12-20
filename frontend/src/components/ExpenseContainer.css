@@ -1,0 +1,10 @@
+.ExpenseContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 85%;
+  background-color: #c98383;
+  /* padding: 20px; */
+}
