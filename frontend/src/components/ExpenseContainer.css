@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 45%;
+  width: 50%;
   height: 85%;
-  background-color: #c98383;
+  background-color: transparent;
   /* padding: 20px; */
 }
