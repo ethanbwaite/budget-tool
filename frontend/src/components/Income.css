@@ -15,7 +15,7 @@
 }
 
 .Income-wrapper {
-  border-radius: 13px 0px 0px 13px;
+  border-radius: 16px 0px 0px 16px;
   box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.67);
   background: rgb(178,250,255);
   background: linear-gradient(90deg, rgba(178,250,255,1) 0%, rgba(186,255,185,1) 100%);
@@ -28,7 +28,7 @@
   align-items: right;
   text-align: right;
   margin: 0px;  
-  width: 7rem;
+  /* width: 7rem; */
 }
 
 .income-input-wrapper {

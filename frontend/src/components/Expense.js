@@ -6,12 +6,16 @@ export function Expense(props) {
   // const [expenses, setExpenses] = useState(props.expenses);
   const [expense, setExpense] = useState(props.expense);
   const [expenseName, setExpenseName] = useState(props.expenseName);
+  const [expenseDisplayName, setExpenseDisplayName] = useState(props.expenseName);
   const [height, setHeight] = useState(props.height);
   const [showSlider, setShowSlider] = useState(props.showSlider);
   const [maxExpense, setMaxExpense] = useState(props.maxExpense);
 
   const calculateMaxExpense = () => {
     let max = income;
+    for (var key in props.savings) {
+      max -= props.savings[key];
+    }
     for (var key in props.expenses) {
       if (key !== expenseName) {
         max -= props.expenses[key];
@@ -23,6 +27,15 @@ export function Expense(props) {
     }
   }
 
+   // Calculate the number of digits in an integer
+   const numDigits = (num) => {
+    return Math.floor(Math.log10(num)) + 1;
+  }
+
+  const inputStyle = {
+    // Dynamic width that scales with increasing number of digits
+    width: (1 + numDigits(expense) + ((numDigits(expense)-4)*0.0)).toString() + 'rem' 
+  }
 
   const divStyle = {
     height: height + '%',
@@ -36,6 +49,10 @@ export function Expense(props) {
     }
   };
 
+  const handleNameChange = (e) => {
+    setExpenseDisplayName(e.target.value);
+  }
+
   const handleExpenseChange = (e) => {
     setExpense(e.target.value);
     calculateMaxExpense();
@@ -43,17 +60,33 @@ export function Expense(props) {
     props.expenseChangeCallback(expenseName, e.target.value);
   };
 
+  const handleDelete = () => {
+    props.deleteCallback(expenseName);
+  };
+
   return (
     <div className="Expense-wrapper" style={divStyle}>
       <div className="Expense">
-        <p className="expenseName">{props.expenseName}</p>
-        <div className='expense-input-wrapper'>
-          <p className="dollar-sign">$</p>
-          <input className="expense-input" type="number" value={expense} step={100} max={maxExpense} onChange={handleExpenseChange} />
+        
+        <div className="expense-text-block">
+          <input className="expenseName" value={expenseDisplayName} onChange={handleNameChange}/>
+          <div className='expense-input-wrapper'>
+            <p className="dollar-sign">$</p>
+            <input 
+              className="expense-input" 
+              type="number" 
+              value={expense} 
+              step={100} 
+              min={0}
+              max={maxExpense} 
+              onChange={handleExpenseChange} 
+              style={inputStyle} />
+          </div>
+          <p className="expensePerYr">${(expense*12).toLocaleString('en-US')}/yr</p>
+          {/* {slider()} */}
+          {/* <p>{maxExpense}</p> */}
         </div>
-        <p className="expensePerYr">${expense*12}/yr</p>
-        {/* {slider()} */}
-        {/* <p>{maxExpense}</p> */}
+        <button className="delete-expense" onClick={handleDelete}>✕</button>
       </div>
     </div>
   );

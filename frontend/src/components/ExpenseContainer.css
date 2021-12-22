@@ -1,8 +1,8 @@
 .ExpenseContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   width: 50%;
   height: 85%;
   background-color: transparent;

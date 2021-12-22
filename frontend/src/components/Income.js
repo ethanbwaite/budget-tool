@@ -9,8 +9,14 @@ export function Income(props) {
     props.parentCallback(e.target.value);
   }
 
+  // Calculate the number of digits in an integer
+  const numDigits = (num) => {
+    return Math.floor(Math.log10(num)) + 1;
+  }
+
   const inputStyle = {
-    width: 7rem; //change this to be dynamic
+    // Dynamic width that scales with increasing number of digits
+    width: (3 + numDigits(income) + ((numDigits(income)-4)*0.5)).toString() + 'rem' 
   }
 
   return (
@@ -23,10 +29,11 @@ export function Income(props) {
             className="income-input" 
             type="number" 
             value={income} 
+            step={100}
             onChange={handleChange} 
             style={inputStyle}/>
         </div>
-        <h3 className="gross-income">${income*12}/yr</h3>
+        <h3 className="gross-income">${(income*12).toLocaleString('en-US')}/yr</h3>
       </div>
     </div>
   );
