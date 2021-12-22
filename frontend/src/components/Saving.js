@@ -29,7 +29,7 @@ export function Saving(props) {
   });
 
   const calculateMaxSaving = () => {
-    let max = income;
+    let max = props.income - parseInt(props.tax);
     for (var key in props.expenses) {
       max -= props.expenses[key];
     }
@@ -70,8 +70,8 @@ export function Saving(props) {
 
   const handleSavingChange = (e) => {
     let newSaving = parseInt(e.target.value);
-    setSaving(newSaving);
     calculateMaxSaving();
+    setSaving(newSaving);
     setHeight((saving / income) * 100);
     props.savingChangeCallback(savingName, newSaving);
     // calculateFutureValue();
@@ -101,6 +101,7 @@ export function Saving(props) {
               step={100} 
               min={0}
               max={maxSaving} 
+              onFocus={() => calculateMaxSaving()}
               onChange={handleSavingChange} 
               style={inputStyle(1)} />
           </div>

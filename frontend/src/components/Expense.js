@@ -8,15 +8,16 @@ export function Expense(props) {
   const [expenseName, setExpenseName] = useState(props.expenseName);
   const [expenseDisplayName, setExpenseDisplayName] = useState(props.expenseName);
   const [height, setHeight] = useState(props.height);
-  const [showSlider, setShowSlider] = useState(props.showSlider);
   const [maxExpense, setMaxExpense] = useState(props.maxExpense);
 
   const calculateMaxExpense = () => {
-    let max = income;
+    let max = props.income - parseInt(props.tax);
+    console.log('Income ' + income);
+    console.log('Tax' + props.tax);
     for (var key in props.savings) {
       max -= props.savings[key];
     }
-    for (var key in props.expenses) {
+    for (key in props.expenses) {
       if (key !== expenseName) {
         max -= props.expenses[key];
       }
@@ -25,6 +26,7 @@ export function Expense(props) {
     if (expense > max) {
       setExpense(max);
     }
+    console.log('Max expense ' + max);
   }
 
    // Calculate the number of digits in an integer
@@ -41,27 +43,19 @@ export function Expense(props) {
     height: height + '%',
   };
 
-  const slider = () => {
-    if (showSlider) {
-      return (
-        <input type="range" min="0" max="100" value={height} onChange={(e) => setHeight(e.target.value)} />
-      );
-    }
-  };
-
   const handleNameChange = (e) => {
     setExpenseDisplayName(e.target.value);
   }
 
   const handleExpenseChange = (e) => {
-    setExpense(e.target.value);
     calculateMaxExpense();
+    setExpense(e.target.value);
     setHeight((expense / income) * 100);
     props.expenseChangeCallback(expenseName, e.target.value);
   };
 
   const handleDelete = () => {
-    props.deleteCallback(expenseName);
+    props.deleteCallback(expenseName, props.expenseIndex);
   };
 
   return (
@@ -79,12 +73,11 @@ export function Expense(props) {
               step={100} 
               min={0}
               max={maxExpense} 
+              onFocus={() => calculateMaxExpense()}
               onChange={handleExpenseChange} 
               style={inputStyle} />
           </div>
           <p className="expensePerYr">${(expense*12).toLocaleString('en-US')}/yr</p>
-          {/* {slider()} */}
-          {/* <p>{maxExpense}</p> */}
         </div>
         <button className="delete-expense" onClick={handleDelete}>✕</button>
       </div>

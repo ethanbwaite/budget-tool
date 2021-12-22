@@ -1,4 +1,4 @@
-.Saving {
+.Tax {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,12 +15,15 @@
   transition-duration: 300ms;
 }
 
-.Saving-wrapper {
+.Tax-wrapper {
+  display: flex;
+  justify-content: space-between;
   border-radius: 0px 16px 16px 0px;
   box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.67);
-  background: rgb(185,196,255);
-  background: linear-gradient(90deg, rgba(185,196,255,1) 0%, rgba(255,178,218,1) 100%);
-  width: 100%;
+  background: rgb(169,242,216);
+  background: linear-gradient(90deg, rgba(169,242,216,1) 0%, rgba(166,205,218,1) 100%);
+  width: 50%;
+  /* height: 100%; */
   min-height: 5rem;
   padding: 5px;
   padding-left: 0px;
@@ -29,7 +32,14 @@
   transition-duration: 300ms;
 }
 
-.savingName {
+.tax-text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.taxName {
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   color: grey;
@@ -38,9 +48,10 @@
   margin-bottom: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+  width: auto;
 }
 
-.savingPerYr {
+.taxPerYr {
   font-weight: 700;
   font-size: 0.75rem;
   color: grey;
@@ -51,66 +62,12 @@
   padding-top: 0px;
 }
 
-.saving-input {
+.tax-amount {
   text-align: left;
-  font-size: 1.5rem;
-  margin-top: 0px;
-}
-
-.saving-input-wrapper {
-  display: flex;
-  flex-direction: row;  
-  margin-left: 1rem;
-}
-
-.dollar-sign {
-  text-align: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 0px;
-  margin: 0px;
-}
-
-.saving-text-block {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  text-align: left;
-  margin-right: 2rem;
-}
-
-.saving-rate-input {
-  text-align: left;
-  font-size: 1.5rem;
-  margin-top: 0px;
-}
-
-.saving-rate-name {
-  font-weight: 700;
-  font-size: 1rem;
-  color: grey;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 1rem;
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
-
-.percent-sign {
-  text-align: right;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0px;
-  margin: 0px;
-}
-
-.future-value {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 600;
   font-size: 1.5rem;
   margin-top: 0px;
   margin-bottom: 0px;
-  /* margin-left: 1rem; */
-  padding-bottom: 0px;
-  padding-top: 0px;
+  margin-left: 1rem;
 }

@@ -8,6 +8,7 @@ function App() {
 
   const parentCallback = (income) => {
     setIncome(income);
+    console.log(income);
   }
 
   return (
