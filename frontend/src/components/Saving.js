@@ -119,8 +119,9 @@ export function Saving(props) {
               max={100} 
               onChange={handleInterestRateChange}
               style={inputStyle(1)} />
-              <p className="percent-sign">%</p>
+            <p className="percent-sign">%</p>
           </div>
+          <p className="savingPerYr">avg/yr</p>
         </div>
         <div className="saving-text-block">
           <p className="saving-rate-name">Time Period</p>
@@ -136,12 +137,14 @@ export function Saving(props) {
               style={inputStyle(0)} />
               <p className="percent-sign">yrs</p>
           </div>
+          <p className="savingPerYr">{timePeriod * 12} months</p>
         </div>
         <div className="saving-text-block">
           <p className="saving-rate-name">Value</p>
           <div className='saving-input-wrapper'>
             <p className="future-value">${futureValue.toLocaleString('en-US')}</p>
           </div>
+          <p className="savingPerYr">Estimated</p>
         </div>
       </div>
     </div>

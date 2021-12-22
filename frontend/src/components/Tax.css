@@ -22,7 +22,7 @@
   box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.67);
   background: rgb(169,242,216);
   background: linear-gradient(90deg, rgba(169,242,216,1) 0%, rgba(166,205,218,1) 100%);
-  width: 50%;
+  width: 100%;
   /* height: 100%; */
   min-height: 5rem;
   padding: 5px;
@@ -36,9 +36,10 @@
   display: flex;
   flex-direction: column;
   justify-content: left;
+  margin-right: 2rem;
 }
 
-.taxName {
+.tax-header {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1rem;
@@ -51,6 +52,17 @@
   width: auto;
 }
 
+.tax-vertical-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  /* margin-right: 5rem; */
+}
+
+.tax-select {
+  max-width: 10rem;
+}
+
 .taxPerYr {
   font-weight: 700;
   font-size: 0.75rem;
@@ -60,6 +72,7 @@
   margin-left: 1rem;
   padding-bottom: 0px;
   padding-top: 0px;
+  margin-right: 0px;
 }
 
 .tax-amount {
@@ -70,4 +83,5 @@
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 1rem;
+  width: auto;
 }

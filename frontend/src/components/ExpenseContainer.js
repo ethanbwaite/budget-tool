@@ -54,11 +54,12 @@ export function ExpenseContainer(props) {
   useEffect (() => {
     console.log('ExpenseContainer useEffect');
     setIncome(props.income);
-  }, [props.income]);
+    setTax(props.tax);
+  }, [props.income, props.tax]);
 
   return (
     <div className="ExpenseContainer">
-      <Tax 
+      {/* <Tax 
         income={income} 
         taxDisplayName='Income Tax'
         state='WA'
@@ -67,7 +68,7 @@ export function ExpenseContainer(props) {
           console.log('Tax change callback');
           setTax(newTax);
         }}
-      />
+      /> */}
       {expenseNames.map((expense, expenseIndex) => (
         <React.Fragment key={'fragment-' + expenseIndex}>
           <Expense 

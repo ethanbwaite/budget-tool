@@ -1,5 +1,6 @@
 import './Tax.css';
 import { useEffect, useState } from 'react';
+import { FILING_STATUS, STATE_ABBREVIATIONS } from '../Constants.js';
 
 export function Tax(props) {
   const [income, setIncome] = useState(props.income);
@@ -8,6 +9,8 @@ export function Tax(props) {
   const [height, setHeight] = useState(props.height);
   const [filingStatus, setFilingStatus] = useState(props.filingStatus);
   const [state, setState] = useState(props.state);
+
+
 
   // Calculate the number of digits in an integer
   const numDigits = (num) => {
@@ -18,12 +21,15 @@ export function Tax(props) {
     height: height + '%',
   };
 
-  const handleNameChange = (e) => {
-    setTaxDisplayName(e.target.value);
+  const handleStateChange = (e) => {
+    setState(e.target.value);
+  }
+
+  const handleFilingChange = (e) => {
+    setFilingStatus(e.target.value);
   }
 
   const calculateTax = () => {
-
     // POST request to taxee.io API
     const requestOptions = {
       method: 'POST',
@@ -53,16 +59,34 @@ export function Tax(props) {
   useEffect(() => {
     calculateTax();
     props.taxChangeCallback(Math.round(tax / 12));
-  }, [props.income]);
+  });
 
   return (
     <div className="Tax-wrapper" style={divStyle}>
       <div className="Tax">
         {/* <button onClick={calculateTax}>call api</button> */}
         <div className="tax-text-block">
-          <input className="taxName" value={taxDisplayName} onChange={handleNameChange}/>
+          <p className="tax-header">Income Tax</p>
           <p className="tax-amount" >${Math.round(tax / 12)}</p>
           <p className="taxPerYr">${tax.toLocaleString('en-US')}/yr</p>
+        </div>
+        <div className="tax-vertical-block">
+          <div className="tax-text-block">
+            <p className="tax-header">State</p>
+            <select className="tax-select" onChange={handleStateChange}>
+              {STATE_ABBREVIATIONS.map((abbreviation, index) => (
+                <option key={index} value={abbreviation}>{abbreviation}</option>
+              ))}
+            </select>
+          </div>
+          <div className="tax-text-block">
+            <p className="tax-header">Filing Status</p>
+            <select className="tax-select" onChange={handleFilingChange}>
+              {Object.keys(FILING_STATUS).map((filing, index) => (
+                <option key={index} value={filing}>{filing}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </div>
